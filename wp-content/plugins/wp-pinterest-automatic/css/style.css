@@ -1,0 +1,82 @@
+
+.pin_img_log{
+	background-size: cover;
+    height: 120px;
+    width: 120px;
+}
+
+ #wppinterest-meta-boxes .checker{
+ 	top:0  !important;
+ 	left:0  !important;
+ }
+
+.pinned{
+	background:url("../images/pinned.png") no-repeat scroll 0 0 transparent;
+	
+}
+
+.scheduled{
+	background:url("../images/scheduled.png") no-repeat scroll 0 0 transparent;
+}
+
+ 
+.ini{
+	background:#aaaaaa;
+	color:#FFFFFF  !important;
+}
+
+.ini td{
+	color:#FFFFFF  !important;
+	text-style:bold;
+}
+
+.pin_img_contain {
+    border: 1px solid #EEEEEE;
+    min-height: 42px;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    margin: 4px;
+    padding: 4px;
+    width: 105px;
+}
+.pin_img_contain img{
+	width:72px;	
+}
+  
+.field-actions {
+    height: 26px;
+    display:none;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 26px;
+}
+
+.field-actions:hover {
+	display:block;
+}
+
+.ajax-loading{
+visibility:hidden;
+}
+
+
+.Cron_Job_Run td{color:green} 
+.Comment td{color:blue} 
+.New td{color:#666 !important} 
+.Processing td{color:red}
+
+.wp-pinterest-automatic .pin_check{
+	float: left;
+    margin: 3px;
+}
+
+.wp-pinterest-automatic-yellow{
+	background-color:yellow;
+}
+
+.wp-pinterest-automatic-container .option{
+	margin-bottom:10px;
+}
+
+

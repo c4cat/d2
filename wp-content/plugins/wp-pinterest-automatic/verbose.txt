@@ -1,0 +1,79 @@
+* About to connect() to www.pinterest.com port 80 (#5)
+*   Trying 54.243.202.101...
+* Adding handle: conn: 0x294a2e0
+* Adding handle: send: 0
+* Adding handle: recv: 0
+* Curl_addHandleToPipeline: length: 1
+* - Conn 5 (0x294a2e0) send_pipe: 1, recv_pipe: 0
+* Connected to www.pinterest.com (54.243.202.101) port 80 (#5)
+> GET / HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.8) Gecko/2009032609 Firefox/3.0.8
+Host: www.pinterest.com
+Accept: */*
+Referer: https://pinterest.com/login/
+Cookie: _pinterest_sess="eJw1y70OgjAUQOG3ccYgBobGmNSYEu4taFHpwgANbQNRqIafp1cG1y/npHnkpSqJriaNksftGfZVKPs4sHtGDqWaXmZQjoDIZqTMR9p42BCyKd+mUz+GAJaTD392yjlTE9bFBjvZ4nJcOI01iouWQmt+hhEpjJK2Gmw1FXc2sfX7ODWU62ibLVrYcVH4nLIZbT5zkQVr9AWvjjh5"
+
+< HTTP/1.1 200 OK
+< Vary: User-Agent
+< Age: 0
+< Cache-Control: private
+< Content-Security-Policy-Report-Only: default-src 'self' *.pinterest.com *.pinimg.com *.google.com connect.facebook.net *.google-analytics.com *.facebook.com www.googleadservices.com googleads.g.doubleclick.net 'unsafe-inline' 'unsafe-eval'; report-uri /_/_/csp_report/
+< Content-Type: text/html; charset=utf-8
+< Date: Sun, 23 Feb 2014 15:55:00 GMT
+< Pinterest-Breed: CORGI
+< Pinterest-Generated-By: ngapp-71f7c35d
+< Pinterest-Version: 6881a67
+* Server nginx is not blacklisted
+< Server: nginx
+< Vary: User-Agent, Cookie, Accept-Encoding
+< Via: 1.1 varnish
+< X-Frame-Options: SAMEORIGIN
+< X-Pinterest-RID: 296470845708
+< X-Ua-Compatible: IE=edge
+< X-Varnish: 2888634018
+* Added cookie csrftoken="WtXrEPJmr7V8FyeJMpg6FELy0WkG1OOB" for domain pinterest.com, path /, expire 1424620500
+< Set-Cookie: csrftoken=WtXrEPJmr7V8FyeJMpg6FELy0WkG1OOB; Domain=.pinterest.com; expires=Sun, 22-Feb-2015 15:55:00 GMT; Max-Age=31449600; Path=/
+< Expires: Sun, 23 Feb 2014 16:00:00 GMT
+< Transfer-Encoding: chunked
+< 
+* Connection #5 to host www.pinterest.com left intact
+* Found bundle for host www.pinterest.com: 0x2877a80
+* Re-using existing connection! (#5) with host www.pinterest.com
+* Connected to www.pinterest.com (54.243.202.101) port 80 (#5)
+* Adding handle: conn: 0x294a2e0
+* Adding handle: send: 0
+* Adding handle: recv: 0
+* Curl_addHandleToPipeline: length: 1
+* - Conn 5 (0x294a2e0) send_pipe: 1, recv_pipe: 0
+> POST /resource/PinResource/create/ HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.8) Gecko/2009032609 Firefox/3.0.8
+Host: www.pinterest.com
+Accept: */*
+Referer: http://pinterest.com/
+Cookie: csrftoken=WtXrEPJmr7V8FyeJMpg6FELy0WkG1OOB; _pinterest_sess="eJw1y70OgjAUQOG3ccYgBobGmNSYEu4taFHpwgANbQNRqIafp1cG1y/npHnkpSqJriaNksftGfZVKPs4sHtGDqWaXmZQjoDIZqTMR9p42BCyKd+mUz+GAJaTD392yjlTE9bFBjvZ4nJcOI01iouWQmt+hhEpjJK2Gmw1FXc2sfX7ODWU62ibLVrYcVH4nLIZbT5zkQVr9AWvjjh5";csrftoken=WtXrEPJmr7V8FyeJMpg6FELy0WkG1OOB
+X-CSRFToken:WtXrEPJmr7V8FyeJMpg6FELy0WkG1OOB
+X-Requested-With:XMLHttpRequest
+Content-Length: 1040
+Content-Type: application/x-www-form-urlencoded
+Expect: 100-continue
+
+* Done waiting for 100-continue
+< HTTP/1.1 404 Not Found
+< Age: 0
+< Cache-Control: private
+< Content-Type: application/json; charset=utf-8
+< Date: Sun, 23 Feb 2014 15:55:07 GMT
+< Pinterest-Breed: CORGI
+< Pinterest-Generated-By: ngapp-ff3f0ad3
+< Pinterest-Version: 6881a67
+* Server nginx is not blacklisted
+< Server: nginx
+< Vary: User-Agent, Accept-Encoding
+< Via: 1.1 varnish
+< X-Frame-Options: SAMEORIGIN
+< X-Pinterest-RID: 391991824184
+< X-Varnish: 193068811
+< Transfer-Encoding: chunked
+* HTTP error before end of send, stop sending
+< 
+* Closing connection 5

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>cookie</title>
+</head>
+<SCRIPT LANGUAGE="javascript">
+function setCookie(name, value, expire)
+{
+window.document.cookie = name + "=" + escape(value) + ((expire == null) ? "" : ("; expires=" + expire.toGMTString()));
+}
+function getCookie(Name)
+{
+  var search = Name + "=";
+  if (window.document.cookie.length > 0)
+{ // if there are any cookies
+  offset = window.document.cookie.indexOf(search);
+if (offset != -1)
+{ // if cookie exists
+    offset += search.length;
+// set index of beginning of value
+  end = window.document.cookie.indexOf(";", offset)
+// set index of end of cookie value
+  if (end == -1)
+    end = window.document.cookie.length;
+  return unescape(window.document.cookie.substring(offset, end));
+  }
+  }
+  return null;
+}
+function register(name) {
+var today = new Date();
+var expires = new Date();
+expires.setTime(today.getTime() + 1000*60*60*24);
+setCookie("zzjs_net", name, expires);
+}
+var exitURL="http://seo.zzjs.net/";//这个地方放置你的HTML代码
+function openWin() {
+var c = getCookie("zzjs_net");
+if (c != null) {
+  return;
+}
+register("zzjs_net");
+var featureStr="''";
+featureStr="'top=0,left=0,width=300,height=100,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no,center:no'";//这里是设置你上面的HTML弹出的高度和宽度的
+self.focus();
+var ExitWindow = window.open(exitURL,'', featureStr);
+ExitWindow.focus();
+}
+openWin();
+window.focus()
+</script>
+<body>
+</body>
+</html>

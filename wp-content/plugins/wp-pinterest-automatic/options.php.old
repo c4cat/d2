@@ -1,0 +1,335 @@
+<?php
+
+// SAVE DATA
+if (isset ( $_POST ['wp_pinterest_user'] )) {
+	
+	print_r ( $_POST );
+	
+	foreach ( $_POST as $key => $val ) {
+		update_option ( $key, $val );
+	}
+	echo '<div class="updated">Changes saved</div>';
+}
+
+$dir = WP_PLUGIN_URL . '/' . str_replace ( basename ( __FILE__ ), "", plugin_basename ( __FILE__ ) );
+
+$wp_pinterest_user = get_option ( 'wp_pinterest_user', '' );
+$wp_pinterest_pass = get_option ( 'wp_pinterest_pass', '' );
+$wp_pinterest_default = get_option ( 'wp_pinterest_default', '{awesome|nice|cool} [post_title]' );
+$wp_pinterest_board = get_option ( 'wp_pinterest_board', '' );
+$wp_pinterest_options = get_option ( 'wp_pinterest_options', array (
+		'OPT_CHECK',
+		'OPT_PIN' 
+) );
+$wp_pinterest_types = get_option ( 'wp_pinterest_types', array (
+		'post',
+		'page' 
+) );
+$wp_pinterest_options = array_merge ( $wp_pinterest_options, $wp_pinterest_types );
+$wp_pinterest_options = implode ( '|', $wp_pinterest_options );
+$wp_pinterest_boards = get_option ( 'wp_pinterest_boards', array (
+		'ids' => array (),
+		'titles' => array () 
+) );
+$wp_pinterest_boards_ids = $wp_pinterest_boards ['ids'];
+$wp_pinterest_boards_titles = $wp_pinterest_boards ['titles'];
+$wp_pinterest_automatic_selector = get_option ( 'wp_pinterest_automatic_selector', '' );
+
+?>
+
+<link href="<?php echo $dir; ?>css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="<?php echo $dir; ?>css/uniform.css" media="screen" rel="stylesheet" type="text/css" />
+
+
+
+<div class="wrap">
+	<form class="TTWWForm wp-pinterest-automatic" method="post" novalidate="" autocomplete="off">
+		<div style="margin-left: 8px" class="icon32" id="icon-options-general">
+			<br>
+		</div>
+		<h2>Pinterest Automatic Settings</h2>
+		<!--before  container-->
+		<div class="metabox-holder" id="dashboard-widgets">
+			<div style="width: 49%;" class="postbox-container">
+				<div style="min-height: 1px;" class="meta-box-sortables ui-sortable" id="normal-sortables">
+
+					<div class="postbox" id="dashboard_right_now">
+						<h3 class="hndle">
+							<span>General Settings</span>
+						</h3>
+						<div class="inside main" style="padding-bottom: 20px">
+
+							<div class="error">
+								<p><?php echo 'Important Notice : You <strong>Must</strong> Be Using <a href="http://blog.pinterest.com/post/48875109658/improvements-to-the-new-look">Pinterest New Look</a> , Not old one for the plugin to work as expected . if you are using old one check this on how to <a href="https://help.pinterest.com/entries/23327731-Switch-to-Pinterest-s-new-look">Switch to new look »</a>'; ?></p>
+							</div>
+
+							<!--/ before container-->
+							<div>
+
+
+
+								<div id="field-wp_pinterest_user-container" class="field f_100">
+									<label for="field-wp_pinterest_user"> Pinterest Login Email : </label> <input value="<?php echo $wp_pinterest_user  ?>" name="wp_pinterest_user" id="field-wp_pinterest_user" required="required" type="text">
+								</div>
+
+
+								<div id="field-wp_pinterest_pass-container" class="field f_100">
+									<label for="field-wp_pinterest_pass"> Pinterest Password : </label> <input value="<?php echo $wp_pinterest_pass  ?>" name="wp_pinterest_pass" id="field-wp_pinterest_pass" required="required" type="password">
+								</div>
+
+
+								<div id="field-wp_pinterest_default-container" class="field f_100">
+									<label for="field-wp_pinterest_default"> Default Pin Text : </label> <input value="<?php echo $wp_pinterest_default  ?>" name="wp_pinterest_default" id="field-wp_pinterest_default" required="required" type="text">
+
+									<p>
+									
+									
+									<p>
+										<small><i>Supported tags:</i></small><br> <abbr title="Image alternative text">[image_alt]</abbr> , <abbr title="Post title">[post_title]</abbr> , <abbr title="the post excerpt">[post_excerpt]</abbr> , <abbr title="The post title">[post_author]</abbr> , <abbr title="the post url">[post_link]</abbr> , <abbr title="Post tags as pinterest hashtags">[post_tags]</abbr>
+									</p>
+									</p>
+
+								</div>
+
+
+
+
+								<div id="field-wp_pinterest_board-container" class="field f_100">
+									<label for="field-wp_pinterest_board"> Default Pin Board ? </label> <select name="wp_pinterest_board" id="field1zz" required="required">
+						      		
+						      		<?php
+														$i = 0;
+														
+														foreach ( $wp_pinterest_boards_ids as $id ) {
+															?>
+						      		
+									<option value="<?php echo $id ?>" <?php wp_pinterest_automatic_opt_selected( $id ,$wp_pinterest_board) ?>><?php echo $wp_pinterest_boards_titles[$i]?></option>
+						      			
+						      		<?php
+															$i ++;
+														}
+														
+														?> 
+						      	</select> <img alt="" id="ajax-loadingimg" class="ajax-loading" src="images/wpspin_light.gif" style="float: right; margin: 3px"> <a href="<?php echo site_url('/?wp_pinterest_automatic=boards')  ?>"><button style="margin-top: 5px" id="get_boards" class="preview button">fetch boards</button></a>
+								</div>
+
+								<div class="field f_100">
+									<label for="field-wp_pinterest_user"> (optional) Custom selector (class/id)(advanced) : </label> <input value="<?php echo $wp_pinterest_automatic_selector  ?>" name="wp_pinterest_automatic_selector" type="text">
+
+									<p>
+										<small><i>This selector for admin page will be used by the plugin to list images in it to check and pin . use a jQuery selector like .my_class for a class named 'my_class' or #my_id for ID of 'my_id' . sometimes your images are not in the editor, in a gallery divition or so . </i></small>
+									</p>
+
+
+								</div>
+
+								
+								<div class="field f_100">
+									<label> (optional) Detect images from this custom field  (field name)(advanced) : </label> <input value="<?php echo get_option('wp_pinterest_automatic_cf' )  ?>" name="wp_pinterest_automatic_cf" type="text">
+
+									<p>
+										<small><i>If your theme uses a custom field for the tumbnail and you like to use it to detect image from add this field name  . </i></small>
+									</p>
+
+
+								</div>
+
+								
+
+								<div id="field-wp_pinterest_options-container" class="field f_100">
+									<label> Pinning options : </label>
+
+									<div class="option clearfix">
+										<input name="wp_pinterest_options[]" id="field-wp_pinterest_options-1" value="OPT_PIN" type="checkbox"> <span class="option-title"> Expand pinning box on editing page </span>
+									</div>
+									<div class="option clearfix">
+										<input name="wp_pinterest_options[]" id="field-wp_pinterest_options-1" value="OPT_CHECK" type="checkbox"> <span class="option-title"> Auto check first image to be pinned </span>
+									</div>
+									<div class="option clearfix">
+										<input name="wp_pinterest_options[]" id="field-wp_pinterest_options-1" value="OPT_BOT" type="checkbox"> <span class="option-title"> Auto pin first image of bots posts (like wordpress robot or wordpress automatic ,etc) </span>
+									</div>
+								</div>
+
+
+
+								<div id="field-wp_pinterest_options-container" class="field f_100">
+									<label> Activate Pinterest Automatic to these post types : </label>
+						      		<?php
+														$post_types = get_post_types ();
+														
+														foreach ( $post_types as $post_type ) {
+															?>
+										
+										<div class="option clearfix">
+										<input name="wp_pinterest_types[]" id="field-wp_pinterest_options-1" value="<?php echo $post_type ?>" type="checkbox"> <span class="option-title">
+							       			 <?php echo $post_type ?> 
+							                </span>
+									</div>	
+											
+										<?php
+														}
+														
+														?>
+						      </div>
+
+								<div id="form-submit" class="field f_100   submit">
+									<input value="Save Options" type="submit">
+								</div>
+
+
+								<!--/TTWForm-->
+							</div>
+							<!--/TTWForm-contain-->
+
+
+
+
+							<!--after container-->
+							<div style="clear: both"></div>
+						</div>
+					</div>
+
+
+
+					<div class="postbox" id="dashboard_right_now">
+						<h3 class="hndle">
+							<span>Cron Setup</span>
+						</h3>
+						<div class="inside main" style="padding-bottom: 20px">
+
+							<p>Pinterest automatic uses the built-in cron but you still can setup a cron job with the comand below . it is optional</p>
+
+							<p style="border: 1px solid #EEEEEE; margin-top: 10px; padding: 10px;"><?php echo 'curl ' . site_url('?wp_pinterest_automatic=cron') ?></p>
+
+
+							<!--after container-->
+							<div style="clear: both"></div>
+						</div>
+					</div>
+
+
+
+
+					<div class="postbox" id="dashboard_right_now">
+						<h3 class="hndle">
+							<span>Cateogry to board</span>
+						</h3>
+
+						<div class="inside main">
+
+							<div id="field-ctb_enable-container" class="field f_100" >
+								<div class="option clearfix">
+									<input data-controls="ctb_container" name="wp_pinterest_options[]" id="field-ctb_enable-1" value="OPT_CTB" type="checkbox"> <span class="option-title"> Enable category to board </span>
+								</div>
+							</div>
+
+							<div id="ctb_container" class="ctb-contain" style="padding-bottom: 20px;padding-left:20px">
+
+								<p style="margin-bottom: 10px">Select what post category will post to what board</p>
+						<?php
+						
+						$wp_pinterest_automatic_wordpress_category = get_option ( 'wp_pinterest_automatic_wordpress_category', array (
+								'' 
+						) );
+						
+						$wp_pinterest_automatic_pinterest_category = get_option ( 'wp_pinterest_automatic_pinterest_category', array () );
+						
+						$pinterest_category = 0;
+						
+						$cats = get_categories ( array (
+									'hide_empty'               => 0 
+						) );
+						
+						?>
+						 
+						<?php
+						$n = 0;
+						foreach ( $wp_pinterest_automatic_wordpress_category as $wp_category ) {
+							
+							?> 
+						 
+						<div class="ctb">
+
+									<div id="field-pinterest_category-container">
+										<label for="field-pinterest_category"> Category : </label> <select name="wp_pinterest_automatic_wordpress_category[]" id="field1zz">
+								
+								
+								
+								<?php
+							
+							foreach ( $cats as $cat ) {
+								?>
+									<option value="<?php echo $cat->term_id ?>" <?php wp_pinterest_automatic_opt_selected($cat->term_id,$wp_category) ?>><?php echo $cat->cat_name ?></option> 
+									<?php
+							}
+							?>
+							
+							</select>
+
+
+
+									</div>
+
+									<div id="field-pinterest_category-container">
+										<label for="field-pinterest_category"> to Board </label> <select name="wp_pinterest_automatic_pinterest_category[]" id="field1zz">
+								
+								<?php
+							$i = 0;
+							
+							foreach ( $wp_pinterest_boards_ids as $id ) {
+								?>
+						      		
+									<option value="<?php echo $id ?>" <?php wp_pinterest_automatic_opt_selected( $id ,$wp_pinterest_automatic_pinterest_category[$n]) ?>><?php echo $wp_pinterest_boards_titles[$i]?></option>
+						      			
+						      		<?php
+								$i ++;
+							}
+							
+							?>
+								
+ 
+							</select>
+
+										<button class="ctb_add">+</button>
+										<button class="ctb_remove">x</button>
+
+									</div>
+
+								</div>
+								<!-- ctb -->
+							
+							<?php $n++;}?>
+
+
+
+							<!--after container-->
+
+							</div>
+							<!-- ctb_container -->
+
+						</div>
+						<!-- main -->
+
+					</div>
+
+
+
+
+				</div>
+			</div>
+		</div>
+		<!-- / start container-->
+	</form>
+</div>
+<!-- /Wrap -->
+
+<script type="text/javascript">
+    var $vals = '<?php echo  $wp_pinterest_options ?>';
+    $val_arr = $vals.split('|');
+    jQuery('input:checkbox').removeAttr('checked');
+    jQuery.each($val_arr, function (index, value) {
+        if (value != '') {
+            jQuery('input:checkbox[value="' + value + '"]').attr('checked', 'checked');
+        }
+    });
+</script>

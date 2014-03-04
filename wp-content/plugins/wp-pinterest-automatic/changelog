@@ -1,0 +1,36 @@
+@24 FEB 2014 
+New version 3.0 
+
+@22/1/2014 v2.0.4
+Fix : removed encoding image source for causing lot's of errors at customers sites
+
+@15/1/2014 v2.0.3
+Fix : encoding imgsrc before pinning 
+Fix : auto pin first image now for custom post types also .
+Fix : new pinterest change returned boards names as undefined
+
+@26/10/2013
+Fix : fetch boards function updated to work with the recent pinterest change
+Fix : curl follocation warning removed for safe mode
+Improvement: bot mode featured images detecting added 
+
+
+@28/9/2013 v2.0.1
+Fix : pinterest change broke login . it is now updated.
+Fix : single quote in title no more causing internal server error .
+Fix : featured images also now get marked as pinned in not already pinned .
+
+@16/9/2013 v2.0.0
+NEW : support for bots 
+NEW : support for custom post types
+NEW : new tags added [post_content],[post_link],[post_excerpt],[post_author],[image_alt]
+Improvement: log was recoded with more details visible 
+Improvement: Mark Pinned images as pinned
+Improvement: remove conflict with wp pinner
+Improvement: curl exist check
+Improvement: auto udpae notification
+
+@30/6/2013
+Bug fix : Added support for the new login form showed by pinterest 
+modified file : core 
+modified function : login 
