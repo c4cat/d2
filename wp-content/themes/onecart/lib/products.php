@@ -12,6 +12,7 @@ function register_products() {
     'edit_item' => __('Edit Product', 'ocart'),
     'new_item' => __('New Product', 'ocart'),
     'all_items' => __('All Products', 'ocart'),
+    // 'all_items' => __('', ''),
     'view_item' => __('View Product', 'ocart'),
     'search_items' => __('Search Products', 'ocart'),
     'not_found' =>  __('No products found.', 'ocart'),

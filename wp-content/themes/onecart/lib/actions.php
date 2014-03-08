@@ -567,12 +567,10 @@ function ocart_place_in_header() {
 	
 	<?php /* responsive css */ ?>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/responsive.css" />
-	
 	<?php
 
 	// javascripts, jquery
 	require_once get_template_directory().'/js/jquery.custom.js.php';
-	
 	// other js code, tracking code, before </head>
 	if (isset($ocart['html_header_code']) && !empty($ocart['html_header_code'])) {
 		echo $ocart['html_header_code'];

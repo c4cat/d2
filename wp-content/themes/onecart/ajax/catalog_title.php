@@ -65,11 +65,10 @@ if (isset($_GET['taxonomies']) && !empty($_GET['taxonomies']) && $_GET['taxonomi
 ?>
 
 <?php $posts = get_posts( $args ); ?>
-<ins id=""><?php //ocart_breadcrumb($term->term_id, $term->taxonomy) ?></ins><span><?php if (count($posts) == 1) { printf(__('<span class="totalprod"><span id="products_count">%s</span> Product Found</span>','ocart'), count($posts)); } else { printf(__('<span class="totalprod"><span id="products_count">%s</span> Products Found</span>','ocart'), count($posts)); } ?></span>
+<ins id=""><?php ocart_breadcrumb($term->term_id, $term->taxonomy) ?></ins><span><?php if (count($posts) == 1) { printf(__('<span class="totalprod"><span id="products_count">%s</span> Product Found</span>','ocart'), count($posts)); } else { printf(__('<span class="totalprod"><span id="products_count">%s</span> Products Found</span>','ocart'), count($posts)); } ?></span>
 
 <?php } else { ?>
 
 <?php $posts = get_posts( $args ); ?>
-<ins><?php _e('All Products','ocart'); ?></ins><span><?php if (count($posts) == 1) { printf(__('<span class="totalprod"><span id="products_count">%s</span> Product Found</span>','ocart'), count($posts)); } else { printf(__('<span class="totalprod"><span id="products_count">%s</span> Products Found</span>','ocart'), count($posts)); } ?></span>
 
 <?php } ?>

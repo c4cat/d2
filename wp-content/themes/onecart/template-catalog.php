@@ -1,4 +1,4 @@
-<div id="catalog">
+<div id="catalog" class='123'>
 
 	<div class="wrap">
 	

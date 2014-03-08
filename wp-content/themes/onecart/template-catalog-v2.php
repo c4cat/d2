@@ -33,7 +33,7 @@
 					<form method="post" action="http://dress4club.com/wp-content/plugins/newsletter/do/subscribe.php" onsubmit="return newsletter_check(this)">
 						<table cellspacing="5" cellpadding="0" border="0">
 						<!-- email -->
-							<tr><h3>NEWSLETTER SIGNUP123</h3></tr>
+							<tr><h3>NEWSLETTER SIGNUP</h3></tr>
 							<tr><td><input type="email" placeholder="Email" name="ne" size="20" required></td><td class="newsletter-td-submit"><input class="newsletter-submit" id="newsletter-submit" type="submit" value="Subscribe"/></td></tr>
 							<tr></tr>
 						</table>
@@ -49,7 +49,7 @@
 	
 		<div class="catalog">
 
-			<?php $posts = get_posts( array( 'post_type' => 'product', 'numberposts' => -1 ) ); ?>
+			<?php $posts = get_posts( array( 'post_type' => 'product','numberposts' => -1 ) ); ?>
 			<div class="catalog_title"><ins><?php _e('All Products','ocart'); ?></ins><span><?php if (count($posts) == 1) { printf(__('<span class="totalprod"><span id="products_count">%s</span> Product Found</span>','ocart'), count($posts)); } else { printf(__('<span class="totalprod"><span id="products_count">%s</span> Products Found</span>','ocart'), count($posts)); } ?></span></div>
 			
 			<ul class="catalog_list">
